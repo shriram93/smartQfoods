@@ -1,0 +1,91 @@
+<section class="main-section">
+  <div>
+    <div class="categories collection card">
+      <a href="#" class="collection-item" [ngClass]="{
+          'active':currentCategory=='All'
+        }" (click)='changeCategory("All")'>All</a>
+
+      <a href="#" class="collection-item" [ngClass]="{
+        'active':currentCategory==category
+      }" *ngFor="let category of categories" (click)='changeCategory(category)'>
+        <span>{{category}}</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="food">
+    <ul class="collection with-header card" *ngFor="let category of filteredCategories">
+      <li class="collection-header">
+        <h6>{{category}}</h6>
+      </li>
+      <li class="collection-item"  *ngFor="let foodItem of menu[category]">
+        <div class="food-container">
+          <div [ngClass]="{
+                'veg-square':foodItem.vegflag === 'veg',
+                'nonveg-square':foodItem.vegflag === 'nonveg'
+
+              }"></div>
+          <div class="food-info">
+            <div class="name">{{foodItem.name}}</div>
+            <div class="description">{{foodItem.description}}</div>
+          </div>
+          <div class="food-decQuantity">
+            <a class="btn-floating btn-small waves-effect waves-light red" [ngClass]="{
+                'disabled': getQuantity(foodItem) === 0
+                }" (click)="removeQuantity(foodItem)">
+              <i class="material-icons">remove</i>
+            </a>
+          </div>
+          <div class="food-quantity">{{getQuantity(foodItem)}}</div>
+          <div class="food-incQuantity">
+            <a class="btn-floating btn-small waves-effect waves-light green" [ngClass]="{
+              'disabled': !isItemAvailable(foodItem)
+            }" (click)="addQuantity(foodItem)">
+              <i class="material-icons">add</i>
+            </a>
+          </div>
+          <div class="food-price"><i class="fas fa-rupee-sign rupee-icon"></i> {{foodItem.price}}</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <ul class="cart collection with-header card">
+      <li class="collection-header your-cart">
+        <h5>Your Cart</h5>
+        <div class="clear-cart" *ngIf="selectedItems.length > 0">
+          <a class="secondary-content btn-floating  waves-effect waves-light red" (click)="clearCart()">
+            <i class="material-icons">delete</i>
+          </a>
+        </div>
+
+      </li>
+      <li class="collection-item" *ngIf="selectedItems.length === 0">
+        Your cart is empty
+      </li>
+      <li class="collection-item" *ngFor="let selectedFoodItem of selectedItems">
+        <div class="cart-container">
+          <div class="cart-food-name">
+            {{selectedFoodItem.name}}
+          </div>
+          <div class="cart-food-quantity">X {{selectedFoodItem.quantity}}</div>
+          <div class="cart-food-price"><i class="fas fa-rupee-sign rupee-icon"></i> {{selectedFoodItem.totalPrice}}</div>
+        </div>
+      </li>
+      <li class="collection-item" *ngIf="selectedItems.length > 0">
+        <div class="cart-container">
+          <div class="final-price-txt">
+            Total:
+          </div>
+          <div></div>
+          <div><i class="fas fa-rupee-sign rupee-icon"></i> {{getSelectedItemTotal()}}</div>
+        </div>
+
+      </li>
+      <li class="collection-item checkout" *ngIf="selectedItems.length > 0">
+        <a class="checkout-btn waves-effect waves-light btn">CHECKOUT</a>
+      </li>
+    </ul>
+  </div>
+
+</section>

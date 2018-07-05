@@ -1,0 +1,97 @@
+.main-section {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 20% auto 25%;
+    grid-gap: 15px 15px;
+    height: 90%;
+}
+
+.collection.with-header .collection-header {
+    text-align: center;
+    background: #F76D74;
+}
+
+.categories,.food,.cart {
+    overflow: auto;
+    font-size: 1.3em;
+}
+
+.veg-square,.nonveg-square{
+    width: 12px;
+    height: 12px;
+    margin-top:5px;
+}
+
+.veg-square {
+    background: green;
+}
+
+.nonveg-square {
+    background: red;
+}
+
+.food-container {
+    display: grid;
+    grid-template-columns: 50px auto 50px 50px 50px 50px;
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+.food-container > div {
+    text-align: center;
+}
+.food-container .food-info  {
+text-align: left;
+}
+
+.food-info > div {
+padding-bottom: 10px;
+}
+
+.cart-container {
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+    grid-gap: 10px;
+}
+
+.cart-container > div {
+
+    text-align: center;
+}
+
+.cart-container .cart-food-name{
+    word-wrap: break-word;
+    text-align: left;
+}
+
+.cart-container  .final-price-txt {
+    text-align: left;
+    font-size: 1.3em;
+}
+
+.your-cart{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkout-btn{
+    background: #F76D74;
+    color: black;
+    font-size:1.2em;
+}
+
+.checkout{
+    text-align: center;
+}
+
+.collection a.collection-item {
+    color: black;
+}
+.collection .collection-item.active {
+    background: #F76D74;
+}
+
+.rupee-icon {
+    font-size: .9em;
+}
